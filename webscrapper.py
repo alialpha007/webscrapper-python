@@ -1,9 +1,5 @@
 # Import Libraries
 import requests
-import smtplib
-import html5lib
-import time
-import datetime
 from bs4 import BeautifulSoup
 
 # Cleaning the Terminal
