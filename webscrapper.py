@@ -1,5 +1,9 @@
 # Import Libraries
+import csv
+from isort import file
 import requests
+import pandas as pd
+import datetime
 from bs4 import BeautifulSoup
 
 # Cleaning the Terminal
@@ -15,8 +19,20 @@ soup1 = BeautifulSoup(page.content, 'html.parser')
 # soup2 = BeautifulSoup(soup1.prettify())
 title = soup1.find(id='productTitle').text.strip()
 price = soup1.find('span', {"class": "a-offscreen"}).text.strip()
-print("Product Name: ", title)
-print("Product Price: ", price)
+# print("Product Name: ", title)
+# print("Product Price: ", price)
+# print(type(title))
+# print(type(price))
 
+date = datetime.date.today()
 
-# print(price)
+header = ['Title', 'Price', 'Date']
+data = [title, price, date]
+with open('AmazonWebScrapper.csv', 'w', newline='', encoding='UTF') as f:
+    writer = csv.writer(f)
+    writer.writerow(header)
+    writer.writerow(data)
+
+dataFile = pd.read_csv(
+    '/Users/muhammadali/Documents/University/Introduction to Data Science/Lab/AmazonWebScrapper.csv')
+print(dataFile)
